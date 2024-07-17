@@ -15,6 +15,6 @@ jobs:
     runs-on: aws_ec2
     steps:
       - name: down
-        run: docker-compose down wanderlust
+        run: docker-compose down /wanderlust
       - name: up
         run: docker-compose up wanderlust/
