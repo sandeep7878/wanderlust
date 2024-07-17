@@ -17,7 +17,7 @@ jobs:
       run: sudo systemctl start docker
 
     - name: Deploy with Docker Compose
-      run: |
+      run: 
         cd /home/ubuntu/actions-runner/_work/wanderlust/wanderlust
         sudo docker-compose down
         sudo docker-compose up -d
