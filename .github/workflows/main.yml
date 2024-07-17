@@ -3,18 +3,21 @@ name: Deploy to AWS EC2
 on:
   push:
     branches:
-      - master
+      - master  # Change this to your deployment branch if needed
 
 jobs:
-  build:
-    runs-on: unbuntu:latest
-    steps:
-      - name: Checkout Source
-        uses: actions/checkout@v2
   deploy:
     runs-on: aws_ec2
+
     steps:
-    #  - name: down
-      #  run: docker-compose down
-      - name: up
-        run: docker-compose up
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Ensure Docker is running
+      run: sudo systemctl start docker
+
+    - name: Deploy with Docker Compose
+      run: |
+        cd /home/ubuntu/actions-runner/_work/wanderlust/wanderlust
+        sudo docker-compose down
+        sudo docker-compose up --build -d
