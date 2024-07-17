@@ -11,10 +11,8 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2
+      - name: up
+        run: docker-compose up -d
   deploy:
     runs-on: aws_ec2
-    steps:
-      - uses: actions/checkout@v3
-      - uses: wanderlust/compose-action@v2.0.1
-        with:
-          compose-file: "./docker-compose.yml"
+  
